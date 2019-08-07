@@ -1,0 +1,28 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes">
+	<ltng:require scripts="{!join(',',
+                           $Resource.jQuery_3_1_1)}" 
+                  afterScriptsLoaded="{!c.onScriptLoaded}"/>
+    
+    <aura:attribute name="hasreCaptchaVerified" type="Boolean" default="false" />
+    
+    <aura:attribute name="hostUrl" type="String" />
+    <aura:attribute name="recaptchaPageName" type="String" default="apex/reCaptcha"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+     <div>
+        <div class="slds-align_absolute-center container">
+            <lightning:layout horizontalAlign="center" verticalAlign="center" multipleRows="true" class="slds-box outer-box">
+                <!-- Captcha Section-->
+                <lightning:layoutItem size="12" class="slds-m-top_small recaptcha-section">
+                    <iframe src="{!v.hostUrl + '/' + v.recaptchaPageName}" frameborder="0" width="100%" allowtransparency="true" id="recaptchaFrame" class="recaptchaFrame "/>
+                </lightning:layoutItem> 
+                
+                <lightning:layoutItem size="12" class="slds-m-top_small recaptcha-section">
+                    <div class="slds-text-color_error">Is Verified : {!v.hasreCaptchaVerified}</div>
+                </lightning:layoutItem>
+            </lightning:layout>
+         </div>
+    </div>
+    
+    
+</aura:component>
